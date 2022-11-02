@@ -9,7 +9,7 @@ interface IRequest {
 }
 
 class ShowProductService {
-  async execute({ id }: IRequest): Promise<Product | null> {
+  public async execute({ id }: IRequest): Promise<Product | null> {
     const product = await ProductsRepository.findOne({ where: { id: id } });
 
     if (!product) {

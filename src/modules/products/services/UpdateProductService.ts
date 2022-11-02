@@ -12,7 +12,7 @@ interface IRequest {
 }
 
 class UpdateProductService {
-  async execute({
+  public async execute({
     id,
     name,
     price,
