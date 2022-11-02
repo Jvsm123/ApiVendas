@@ -9,14 +9,18 @@
     "outDir": "./build",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "strict": true,
+    "strictPropertyInitialization": false,
     "noImplicitAny": true,
     "skipLibCheck": true,
-	"baseUrl": "./",
-	"paths": {
-		"@config/*": ["src/config/*"],
-		"@modules/*": ["src/modules/*"],
-		"@shared/*": ["src/shared/*"]
-	}
+    "baseUrl": "./",
+    "paths": {
+      "@config/*": ["src/config/*"],
+      "@modules/*": ["src/modules/*"],
+      "@shared/*": ["src/shared/*"]
+    }
   }
 }
+
