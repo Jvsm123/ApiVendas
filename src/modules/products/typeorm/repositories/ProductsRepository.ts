@@ -1,8 +1,5 @@
-import postgresDataSource from '@shared/typeorm';
+import { PostgresDataSource } from '@shared/typeorm';
 
-import Product from '../entities/Product';
+import { Product } from '../entities/Product';
 
-const ProductsRepository = postgresDataSource.getRepository(Product);
-
-export default ProductsRepository;
-
+export const ProductsRepository = PostgresDataSource.getRepository(Product);
