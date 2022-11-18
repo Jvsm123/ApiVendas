@@ -4,11 +4,13 @@ import MainUsersController from '../controller/MainUsersController';
 
 import { celebrate, Joi, Segments } from 'celebrate';
 
+import isAuthenticated from '@shared/http/middlewares/isAuthenticated';
+
 const usersRouter = Router();
 
 const usersController = new MainUsersController();
 
-usersRouter.get('/', usersController.index);
+usersRouter.get('/', isAuthenticated, usersController.index);
 
 usersRouter.post(
   '/',

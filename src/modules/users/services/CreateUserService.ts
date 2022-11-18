@@ -4,6 +4,8 @@ import { UsersRepository } from '../typeorm/repositories/UsersRepository';
 
 import { User } from '../typeorm/entities/User';
 
+import { hash } from 'bcryptjs';
+
 interface IRequest {
   name: string;
   email: string;
@@ -24,10 +26,12 @@ class CreateUserService {
       throw new AppError('There is already one user with this email!');
     }
 
+	const hasedPassowrd = await hash(password, 14);
+
     const user = UsersRepository.create({
       name,
       email,
-      password,
+      password: hasedPassowrd,
       avatar,
     });
 

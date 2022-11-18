@@ -1,11 +1,14 @@
 import { Request, Response } from 'express';
+
 import CreateUserService from '../services/CreateUserService';
 
 import ListUserService from '../services/ListUserService';
 
 class MainUsersController {
-  public async index(_: Request, res: Response): Promise<Response> {
+  public async index(req: Request, res: Response): Promise<Response> {
     const listUsers = new ListUserService();
+
+	console.log(req.user.id);
 
     const users = await listUsers.execute();
 
