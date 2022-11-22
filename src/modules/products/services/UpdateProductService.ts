@@ -26,7 +26,8 @@ class UpdateProductService {
       where: { name: name },
     });
 
-    if (productExists && name !== product.name) throw new AppError('This product already exists!');
+    if (productExists && name !== product.name)
+      throw new AppError('This product already exists!');
 
     product.name = name;
     product.price = price;
@@ -39,4 +40,3 @@ class UpdateProductService {
 }
 
 export default UpdateProductService;
-

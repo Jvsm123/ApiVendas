@@ -1,10 +1,10 @@
-import "reflect-metadata";
+import 'reflect-metadata';
 
 import { DataSource } from 'typeorm';
 
 // Bug on import with @path
 import { Product } from '../../modules/products/typeorm/entities/Product';
-import { User } from '../../modules/users/typeorm/entities/User'
+import { User } from '../../modules/users/typeorm/entities/User';
 
 export const PostgresDataSource: DataSource = new DataSource({
   type: 'postgres',

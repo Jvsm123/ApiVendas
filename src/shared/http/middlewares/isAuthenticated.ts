@@ -14,7 +14,7 @@ interface TokenPayload {
 
 export default function isAuthenticated(
   req: Request,
-  res: Response,
+  _: Response,
   next: NextFunction,
 ): void {
   const authHeader = req.headers.authorization;
@@ -33,9 +33,7 @@ export default function isAuthenticated(
     req.user = { id: sub };
 
     return next();
-  }
-  catch (err) {
+  } catch (err) {
     throw new AppError('Invalid JWT Token');
   }
 }
-

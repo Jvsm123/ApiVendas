@@ -64,4 +64,3 @@ class MainProductsController {
 }
 
 export default MainProductsController;
-

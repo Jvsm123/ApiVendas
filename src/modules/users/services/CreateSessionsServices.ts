@@ -47,4 +47,3 @@ class CreateSessionsServices {
 }
 
 export default CreateSessionsServices;
-

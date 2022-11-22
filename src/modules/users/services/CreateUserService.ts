@@ -26,7 +26,7 @@ class CreateUserService {
       throw new AppError('There is already one user with this email!');
     }
 
-	const hasedPassowrd = await hash(password, 14);
+    const hasedPassowrd = await hash(password, 14);
 
     const user = UsersRepository.create({
       name,
@@ -42,4 +42,3 @@ class CreateUserService {
 }
 
 export default CreateUserService;
-

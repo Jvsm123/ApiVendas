@@ -6,6 +6,8 @@ import cors from 'cors';
 
 import routes from './routes';
 
+import multer from '@config/multer';
+
 import { errors } from 'celebrate';
 
 import AppError from '@shared/errors/AppError';
@@ -23,14 +25,14 @@ PostgresDataSource.initialize()
 
     app.use(express.json());
 
+    app.use('/files', express.static(multer.directory));
+
     app.use(routes);
 
     app.use(errors());
 
-    app.use((error: Error, _: Request, res: Response, ___: NextFunction) => {
+    app.use((error: Error, _: Request, res: Response, __: NextFunction) => {
       if (error instanceof AppError) {
-        console.log('ERrrored!');
-
         return res.status(error.statusCode).json({
           status: 'Error!',
           message: error.message,

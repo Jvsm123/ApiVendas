@@ -2,7 +2,7 @@ import AppError from '@shared/errors/AppError';
 
 import { Product } from '../typeorm/entities/Product';
 
-import  { ProductsRepository } from '../typeorm/repositories/ProductsRepository';
+import { ProductsRepository } from '../typeorm/repositories/ProductsRepository';
 
 interface IRequest {
   id: string;
@@ -21,4 +21,3 @@ class ShowProductService {
 }
 
 export default ShowProductService;
-

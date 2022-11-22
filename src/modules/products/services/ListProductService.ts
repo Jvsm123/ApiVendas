@@ -11,4 +11,3 @@ class ListProductService {
 }
 
 export default ListProductService;
-

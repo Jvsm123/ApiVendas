@@ -11,4 +11,3 @@ routes.use('/sessions', sessionsRouter);
 routes.use('/products', productsRouter);
 
 export default routes;
-

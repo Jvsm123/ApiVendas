@@ -15,4 +15,3 @@ class SessionController {
 }
 
 export default SessionController;
-

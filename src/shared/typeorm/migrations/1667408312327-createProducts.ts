@@ -46,4 +46,3 @@ export class createProducts1667408312327 implements MigrationInterface {
     await queryRunner.dropTable('products');
   }
 }
-

@@ -26,4 +26,3 @@ export class Product {
   @UpdateDateColumn()
   updated_at: Date;
 }
-
