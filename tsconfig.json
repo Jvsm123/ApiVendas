@@ -4,7 +4,6 @@
     "lib": ["es6"],
     "module": "commonjs",
     "rootDir": "src",
-    "typeRoots": ["@types", "./node_modules/@types"],
     "resolveJsonModule": true,
     "allowJs": true,
     "outDir": "./build",
