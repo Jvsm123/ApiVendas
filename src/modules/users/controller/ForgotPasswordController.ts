@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 
 import SendForgotPasswordEmailService from '../services/SendForgotPasswordEmailService';
 
-class ForgotPasswordController {
+export default class ForgotPasswordController {
   public async create(req: Request, res: Response): Promise<Response> {
     const { email } = req.body;
 
@@ -10,9 +10,7 @@ class ForgotPasswordController {
 
     const result = await sendForgotPasswordEmail.execute({ email });
 
-    return res.json(result);
+    return res.status(204).json(result);
   }
 }
-
-export default ForgotPasswordController;
 
