@@ -31,4 +31,3 @@ export const UsersRepository = PostgresDataSource.getRepository(User).extend({
     return user;
   },
 });
-

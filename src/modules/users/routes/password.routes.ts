@@ -30,4 +30,3 @@ passwordRouter.post(
 );
 
 export default passwordRouter;
-

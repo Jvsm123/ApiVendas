@@ -50,4 +50,3 @@ PostgresDataSource.initialize()
   .catch(err => {
     throw new Error(`Error on instanced database: ${err}`);
   });
-
