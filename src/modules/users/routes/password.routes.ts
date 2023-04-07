@@ -3,10 +3,12 @@ import { celebrate, Joi, Segments } from 'celebrate';
 import { Router } from 'express';
 
 import ForgotPasswordController from '../controller/ForgotPasswordController';
+import ResetPasswordController from '../controller/ResetPasswordController';
 
 const passwordRouter = Router();
 
 const forgotPasswordController = new ForgotPasswordController();
+const resetPasswordController = new ResetPasswordController();
 
 passwordRouter.post(
   '/forgot',
@@ -27,6 +29,7 @@ passwordRouter.post(
       password_confirmation: Joi.string().required().valid(Joi.ref('password')),
     },
   }),
+  resetPasswordController.create,
 );
 
 export default passwordRouter;

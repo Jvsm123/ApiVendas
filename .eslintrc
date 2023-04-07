@@ -1,7 +1,7 @@
 {
   "root": true,
   "env": {
-    "node": true
+	"node": true
   },
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint", "prettier"],
@@ -9,7 +9,6 @@
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended"
-    // "plugin:prettier/recommended"
   ],
   "rules": {
     "prettier/prettier": [

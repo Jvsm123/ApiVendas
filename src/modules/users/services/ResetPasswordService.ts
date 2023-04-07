@@ -14,14 +14,14 @@ interface IRequest {
 }
 
 class ResetPasswordService {
-  public async execute({ token, password }: IRequest): Promise<string> {
+  public async execute({ token, password }: IRequest): Promise<void> {
     const userToken = await UsersTokenRepository.findByToken(token);
 
     if (!userToken) {
       throw new AppError('Token is not valid!');
     }
 
-    const user = await UsersRepository.findById(userToken.id);
+    const user = await UsersRepository.findById(userToken.user_id);
 
     if (!user) {
       throw new AppError('User is not valid!');
@@ -37,7 +37,7 @@ class ResetPasswordService {
 
     user.password = await hash(password, 8);
 
-    return 'Password changed susscessfuly!';
+    await UsersRepository.save(user);
   }
 }
 

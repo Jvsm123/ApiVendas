@@ -8,8 +8,16 @@ interface IRequest {
   email: string;
 }
 
+interface ITokenResponse {
+  id: string;
+  token: string;
+  user_id: string;
+  created_at: Date;
+  updated_at: Date;
+}
+
 class SendForgotPasswordEmailService {
-  public async execute({ email }: IRequest): Promise<void> {
+  public async execute({ email }: IRequest): Promise<ITokenResponse> {
     const user = await UsersRepository.findByEmail(email);
 
     if (!user) {
@@ -22,7 +30,7 @@ class SendForgotPasswordEmailService {
       throw new AppError('Token failed to create!');
     }
 
-    console.log(token);
+    return token;
   }
 }
 

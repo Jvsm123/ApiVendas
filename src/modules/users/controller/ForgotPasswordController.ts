@@ -8,9 +8,9 @@ class ForgotPasswordController {
 
     const sendForgotPasswordEmail = new SendForgotPasswordEmailService();
 
-    await sendForgotPasswordEmail.execute({ email });
+    const token = await sendForgotPasswordEmail.execute({ email });
 
-    return res.status(201).json();
+    return res.status(201).json(token);
   }
 }
 
