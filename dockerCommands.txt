@@ -1,3 +1,0 @@
-** Configurar o docker usando a variável de senha, porta externa 15432 e em deamon.
-
-docker run --name postgres -e POSTGRES_PASSWORD=teste -p 15432:5432 -d postgres
