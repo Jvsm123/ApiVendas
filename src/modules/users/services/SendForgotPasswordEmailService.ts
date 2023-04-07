@@ -18,8 +18,13 @@ class SendForgotPasswordEmailService {
 
     const token = await UsersTokenRepository.generateToken(user.id);
 
+    if (!token) {
+      throw new AppError('Token failed to create!');
+    }
+
     console.log(token);
   }
 }
 
 export default SendForgotPasswordEmailService;
+

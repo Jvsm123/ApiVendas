@@ -9,3 +9,6 @@ dist
 
 uploads/*
 !uploads/.gitkeep
+
+yarn-error.log
+dockerCommands.txt

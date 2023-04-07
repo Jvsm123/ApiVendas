@@ -37,7 +37,7 @@ export class createUserTokens1669078700585 implements MigrationInterface {
         foreignKeys: [
           {
             name: 'TokenUser',
-            referencedTableName: 'user_tokens',
+            referencedTableName: 'users',
             referencedColumnNames: ['id'],
             columnNames: ['user_id'],
             onDelete: 'CASCADE',

@@ -41,7 +41,7 @@ PostgresDataSource.initialize()
 
       return res.status(500).json({
         status: 'Error!',
-        message: 'Internal Server Error_!',
+        message: `Message from server: ${error.message}`,
       });
     });
 

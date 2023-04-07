@@ -5,7 +5,7 @@ import { UserToken } from '../entities/UserToken';
 export const UsersTokenRepository = PostgresDataSource.getRepository(
   UserToken,
 ).extend({
-  async findByToken(token: string): Promise<null | UserToken> {
+  async findByToken(token: string): Promise<UserToken | null> {
     const userToken = await this.findOne({
       where: {
         token,
@@ -16,13 +16,10 @@ export const UsersTokenRepository = PostgresDataSource.getRepository(
   },
 
   async generateToken(user_id: string): Promise<UserToken | null> {
-    const userToken = this.create({
-      user_id,
-    });
+    const userToken = this.create({ user_id });
 
     await this.save(userToken);
 
     return userToken;
   },
 });
-
