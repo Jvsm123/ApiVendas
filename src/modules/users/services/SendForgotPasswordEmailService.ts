@@ -4,6 +4,8 @@ import { UsersRepository } from '../typeorm/repositories/UsersRepository';
 
 import { UsersTokenRepository } from '../typeorm/repositories/UserTokensRepository';
 
+import EtherealMail from '@config/mail/etherealMail';
+
 interface IRequest {
   email: string;
 }
@@ -29,6 +31,11 @@ class SendForgotPasswordEmailService {
     if (!token) {
       throw new AppError('Token failed to create!');
     }
+
+    await EtherealMail.sendMail({
+      to: email,
+      body: `Change our password with this token: ${token?.token}`,
+    });
 
     return token;
   }
