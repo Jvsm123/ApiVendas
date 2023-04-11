@@ -10,34 +10,31 @@ interface IRequest {
   email: string;
 }
 
-interface ITokenResponse {
-  id: string;
-  token: string;
-  user_id: string;
-  created_at: Date;
-  updated_at: Date;
-}
-
 class SendForgotPasswordEmailService {
-  public async execute({ email }: IRequest): Promise<ITokenResponse> {
+  public async execute({ email }: IRequest): Promise<void> {
     const user = await UsersRepository.findByEmail(email);
 
     if (!user) {
       throw new AppError('User does not exists.');
     }
 
-    const token = await UsersTokenRepository.generateToken(user.id);
+    const { token } = await UsersTokenRepository.generateToken(user.id);
 
     if (!token) {
       throw new AppError('Token failed to create!');
     }
 
     await EtherealMail.sendMail({
-      to: email,
-      body: `Change our password with this token: ${token?.token}`,
+      to: { name: user.name, email: user.email },
+      subject: '[API Vendas] - Recuperação de senha',
+      templateData: {
+        template: `Change our password with this token: ${token}`,
+        variables: {
+          name: user.name,
+          token,
+        },
+      },
     });
-
-    return token;
   }
 }
 

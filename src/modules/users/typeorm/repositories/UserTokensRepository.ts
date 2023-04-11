@@ -15,7 +15,7 @@ export const UsersTokenRepository = PostgresDataSource.getRepository(
     return userToken;
   },
 
-  async generateToken(user_id: string): Promise<UserToken | null> {
+  async generateToken(user_id: string): Promise<UserToken> {
     const userToken = this.create({ user_id });
 
     await this.save(userToken);
