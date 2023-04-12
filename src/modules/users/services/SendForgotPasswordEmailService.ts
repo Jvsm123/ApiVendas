@@ -6,6 +6,8 @@ import { UsersTokenRepository } from '../typeorm/repositories/UserTokensReposito
 
 import EtherealMail from '@config/mail/etherealMail';
 
+import path from 'path';
+
 interface IRequest {
   email: string;
 }
@@ -20,6 +22,13 @@ class SendForgotPasswordEmailService {
 
     const { token } = await UsersTokenRepository.generateToken(user.id);
 
+    const forgotPasswordTemplate = path.resolve(
+      __dirname,
+      '..',
+      'views',
+      'forgotPassword.hbs',
+    );
+
     if (!token) {
       throw new AppError('Token failed to create!');
     }
@@ -28,10 +37,10 @@ class SendForgotPasswordEmailService {
       to: { name: user.name, email: user.email },
       subject: '[API Vendas] - Recuperação de senha',
       templateData: {
-        template: `Change our password with this token: ${token}`,
+        file: forgotPasswordTemplate,
         variables: {
           name: user.name,
-          token,
+          link: `http://localhost:3000/reset_password?token=${token}`,
         },
       },
     });

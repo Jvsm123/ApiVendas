@@ -7,7 +7,7 @@ interface ITemplateVariable {
 }
 
 interface IParseMailTemplate {
-  template: string;
+  file: string;
   variables: ITemplateVariable;
 }
 
@@ -52,7 +52,7 @@ class EtherealMail {
       },
       subject: subject,
       html: await mailTemplate.parse({
-        template: templateData.template,
+        file: templateData.file,
         variables: templateData.variables,
       }),
     });
