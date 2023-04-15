@@ -1,6 +1,6 @@
 import 'express-async-errors';
 
-import express, { Request, Response } from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 
 import cors from 'cors';
 
@@ -27,11 +27,11 @@ PostgresDataSource.initialize()
 
     app.use('/files', express.static(multer.directory));
 
-    app.use(routes);
-
     app.use(errors());
 
-    app.use((error: Error, _: Request, res: Response) => {
+    app.use(routes);
+
+    app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
       if (error instanceof AppError) {
         return res.status(error.statusCode).json({
           status: 'Error!',
