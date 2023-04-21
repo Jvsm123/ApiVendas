@@ -31,7 +31,7 @@ PostgresDataSource.initialize()
 
     app.use(routes);
 
-    app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
+    app.use((error: Error, _: Request, res: Response) => {
       if (error instanceof AppError) {
         return res.status(error.statusCode).json({
           status: 'Error!',
