@@ -2,7 +2,7 @@ import { PostgresDataSource } from '@shared/typeorm';
 
 import { Customer } from '../entities/Customers';
 
-export const CustumersRepository = PostgresDataSource.getRepository(
+export const CustomersRepository = PostgresDataSource.getRepository(
   Customer,
 ).extend({
   async findByName(name: string): Promise<null | Customer> {

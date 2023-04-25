@@ -2,7 +2,7 @@ import AppError from '@shared/errors/AppError';
 
 import { Customer } from '../typeorm/entities/Customers';
 
-import { CustumersRepository } from '../typeorm/repositories/CustomersRepository';
+import { CustomersRepository } from '../typeorm/repositories/CustomersRepository';
 
 interface IRequest {
   id: string;
@@ -12,11 +12,11 @@ interface IRequest {
 
 class UpdateCustomerService {
   public async execute({ id, name, email }: IRequest): Promise<Customer> {
-    const customer = await CustumersRepository.findById(id);
+    const customer = await CustomersRepository.findById(id);
 
     if (!customer) throw new AppError('Customer not found!');
 
-    const customerUpdateEmail = await CustumersRepository.findByEmail(email);
+    const customerUpdateEmail = await CustomersRepository.findByEmail(email);
 
     if (customerUpdateEmail && email !== customer.email)
       throw new AppError('Email already registred!');
@@ -24,7 +24,7 @@ class UpdateCustomerService {
     customer.name = name;
     customer.email = email;
 
-    await CustumersRepository.save(customer);
+    await CustomersRepository.save(customer);
 
     return customer;
   }

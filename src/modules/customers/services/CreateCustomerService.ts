@@ -2,7 +2,7 @@ import AppError from '@shared/errors/AppError';
 
 import { Customer } from '../typeorm/entities/Customers';
 
-import { CustumersRepository } from '../typeorm/repositories/CustomersRepository';
+import { CustomersRepository } from '../typeorm/repositories/CustomersRepository';
 
 interface IRequest {
   name: string;
@@ -11,18 +11,18 @@ interface IRequest {
 
 class CreateCustomerService {
   public async execute({ name, email }: IRequest): Promise<Customer | null> {
-    const emailExists = await CustumersRepository.findByEmail(email);
+    const emailExists = await CustomersRepository.findByEmail(email);
 
     if (emailExists) {
       throw new AppError('There is already one customer with this email!');
     }
 
-    const customer = CustumersRepository.create({
+    const customer = CustomersRepository.create({
       name,
       email,
     });
 
-    await CustumersRepository.save(customer);
+    await CustomersRepository.save(customer);
 
     return customer;
   }
